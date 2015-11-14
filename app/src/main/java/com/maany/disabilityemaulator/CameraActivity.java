@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,13 +21,16 @@ public class CameraActivity extends Activity {
     private Camera mCamera;
     private CameraPreview mPreview;
     private TextView debugText;
-
+    private ImageView filteredImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
         debugText = (TextView)findViewById(R.id.debugText);
+        filteredImageView = (ImageView) findViewById(R.id.camera_preview_filtered);
+
         if(checkCameraHardware(this)){
             Toast.makeText(this,"Device has usable camera", Toast.LENGTH_LONG);
             Log.i(TAG, "Device has usable camera");
@@ -41,13 +45,14 @@ public class CameraActivity extends Activity {
         if(mCamera!=null) {
             debugText.setText("Cool cool");
             // Create our Preview view and set it as the content of our activity.
-            mPreview = new CameraPreview(this, mCamera);
+            mPreview = new CameraPreview(this, mCamera, filteredImageView);
             FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
             preview.addView(mPreview);
         }else{
             // camera not available
             debugText.setText("no Cool");
         }
+
     }
 
     @Override
