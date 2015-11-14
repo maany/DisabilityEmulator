@@ -35,10 +35,43 @@ public class ColorblindnessTestFilter extends AsyncTask<byte[],Integer,byte[]>{
 
 
         byte[] data = params[0];
-        Camera.Size previewSize = camera.getParameters().getPreviewSize();
+   //     return data;
+
+    Camera.Size previewSize = camera.getParameters().getPreviewSize();
+ /*       Bitmap bm = BitmapFactory.decodeByteArray(data, 0, data.length);
+       ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        return byteArray;*/
+
+/*
+        int picw = previewSize.width;
+        int pich = previewSize.height;
+        int[] pix = new int[picw * pich];
+        bm.getPixels(pix, 0, picw, 0, 0, picw, pich);
+
+        int R, G, B,Y;
+
+        for (int y = 0; y < pich; y++){
+            for (int x = 0; x < picw; x++)
+            {
+                int index = y * picw + x;
+                R = (pix[index] >> 16) & 0xff;
+                G = (pix[index] >> 8) & 0xff;
+                B = pix[index] & 0xff;
+                Log.i("x:" + x + "y:" + y,"R :"+ R );
+                //R,G.B - Red, Green, Blue
+                //to restore the values after RGB modification, use
+                //next statement
+                pix[index] = 0xff000000 | (R << 16) | (G << 8) | B;
+            }}
+*/
+
+
         YuvImage yuvimage=new YuvImage(data, ImageFormat.NV21, previewSize.width, previewSize.height, null);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        yuvimage.compressToJpeg(new Rect(0, 0, 128, 96), 80, baos);
+        yuvimage.compressToJpeg(new Rect(0, 0, 480, 340), 80, baos);
+
         byte[] jdata = baos.toByteArray();
 //        int sizeOfData = jdata.length;
 
@@ -51,8 +84,8 @@ public class ColorblindnessTestFilter extends AsyncTask<byte[],Integer,byte[]>{
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        imageView.setMinimumHeight(dm.heightPixels);
-        imageView.setMinimumWidth(dm.widthPixels);
+      //  imageView.setMinimumHeight(dm.heightPixels);
+      //  imageView.setMinimumWidth(dm.widthPixels);
         imageView.setImageBitmap(bm);
 
     }

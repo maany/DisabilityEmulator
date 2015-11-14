@@ -14,14 +14,14 @@
         >
         <FrameLayout
             android:id="@+id/camera_preview"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="640dp"
+            android:layout_height="240dp"
             android:layout_weight="1"
             />
         <ImageView
             android:id="@+id/camera_preview_filtered"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="640dp"
+            android:layout_height="240dp"
             android:layout_weight="1"
              />
 
