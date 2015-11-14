@@ -3,6 +3,7 @@ package com.maany.disabilityemaulator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.util.Log;
@@ -76,6 +77,8 @@ public class CameraActivity extends Activity {
         Camera c = null;
         try {
             c = Camera.open(); // attempt to get a Camera instance
+//TODO specify image format
+//            c.getParameters().setPreviewFormat(ImageFormat.);
         }
         catch (Exception e){
             e.printStackTrace();

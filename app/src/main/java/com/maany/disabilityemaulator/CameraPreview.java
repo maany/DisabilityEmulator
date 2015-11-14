@@ -40,6 +40,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
     public void surfaceDestroyed(SurfaceHolder holder) {
         // empty. Take care of releasing the CameraActivity preview in your activity.
+        mCamera.stopPreview();
         mCamera.setPreviewCallback(null);
         mCamera.release();
         mCamera = null;
@@ -59,6 +60,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
             mCamera.stopPreview();
         } catch (Exception e){
             // ignore: tried to stop a non-existent preview
+            e.printStackTrace();
         }
 
         // set preview size and make any resize, rotate or
@@ -73,4 +75,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
             Log.d(TAG, "Error starting camera preview: " + e.getMessage());
         }
     }
+
+
+
 }
