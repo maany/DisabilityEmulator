@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,18 +11,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CameraActivity extends Activity {
+public class DeuteranopiaActivity extends Activity {
 
     public static final String TAG = CameraActivity.class.getName();
     private Camera mCamera;
-    private CameraPreview mPreview;
+    private CameraPreviewDeuteranopia mPreview;
     private TextView debugText;
     private ImageView filteredImageView;
     private ImageView filteredImageViewRight;
@@ -31,15 +28,13 @@ public class CameraActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camera);
-
-//        debugText = (TextView)findViewById(R.id.debugText);
+        setContentView(R.layout.activity_deuteranopia);
         debugText = new TextView(this);
         filteredImageView = (ImageView) findViewById(R.id.camera_preview_filtered);
         filteredImageViewRight = (ImageView) findViewById(R.id.camera_preview_filtered_right);
-        deuteranopia = (Button) findViewById(R.id.deuteranopia);
+
         if(checkCameraHardware(this)){
-            Toast.makeText(this,"Device has usable camera", Toast.LENGTH_LONG);
+            Toast.makeText(this, "Device has usable camera", Toast.LENGTH_LONG);
             Log.i(TAG, "Device has usable camera");
             debugText.setText("Cool");
         } else {
@@ -52,7 +47,7 @@ public class CameraActivity extends Activity {
         if(mCamera!=null) {
             debugText.setText("Cool cool");
             // Create our Preview view and set it as the content of our activity.
-            mPreview = new CameraPreview(this, mCamera, filteredImageView, filteredImageViewRight);
+            mPreview = new CameraPreviewDeuteranopia(this, mCamera, filteredImageView, filteredImageViewRight);
             RelativeLayout preview = (RelativeLayout) findViewById(R.id.camera_preview);
             preview.addView(mPreview);
 
@@ -63,24 +58,13 @@ public class CameraActivity extends Activity {
             debugText.setText("no Cool");
         }
 
-        deuteranopia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Intent intent = new Intent(CameraActivity.this,DeuteranopiaActivity.class);
-                try {
-                    startActivity(intent);
-                }catch(Exception ex){
-                    ex.printStackTrace();
-                }
-            }
-        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_camera, menu);
+        getMenuInflater().inflate(R.menu.menu_deuteranopia, menu);
         return true;
     }
 
@@ -95,6 +79,7 @@ public class CameraActivity extends Activity {
         if (id == R.id.action_settings) {
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -103,7 +88,7 @@ public class CameraActivity extends Activity {
         Camera c = null;
         try {
             c = Camera.open(); // attempt to get a Camera instance
-    //TODO specify image format
+            //TODO specify image format
 //            c.getParameters().setPreviewFormat(ImageFormat.);
         }
         catch (Exception e){
