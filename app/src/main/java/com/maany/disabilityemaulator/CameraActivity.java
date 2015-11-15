@@ -22,6 +22,7 @@ public class CameraActivity extends Activity {
     private CameraPreview mPreview;
     private TextView debugText;
     private ImageView filteredImageView;
+    private ImageView filteredImageViewRight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class CameraActivity extends Activity {
 
         debugText = (TextView)findViewById(R.id.debugText);
         filteredImageView = (ImageView) findViewById(R.id.camera_preview_filtered);
+        filteredImageViewRight = (ImageView) findViewById(R.id.camera_preview_filtered_right);
 
         if(checkCameraHardware(this)){
             Toast.makeText(this,"Device has usable camera", Toast.LENGTH_LONG);
@@ -45,7 +47,7 @@ public class CameraActivity extends Activity {
         if(mCamera!=null) {
             debugText.setText("Cool cool");
             // Create our Preview view and set it as the content of our activity.
-            mPreview = new CameraPreview(this, mCamera, filteredImageView);
+            mPreview = new CameraPreview(this, mCamera, filteredImageView, filteredImageViewRight);
             FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
             preview.addView(mPreview);
         }else{

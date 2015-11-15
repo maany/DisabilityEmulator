@@ -2,6 +2,7 @@ package com.maany.disabilityemaulator;
 
 import android.content.Context;
 import android.graphics.ImageFormat;
+import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -21,11 +22,13 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     private SurfaceHolder mHolder;
     private Camera mCamera;
     private ImageView mFilteredImageView;
+    private ImageView mFilteredImageViewRight;
     private static String TAG = CameraPreview.class.getName();
-    public CameraPreview(Context context, Camera camera, ImageView filteredImageView) {
+    public CameraPreview(Context context, Camera camera, ImageView filteredImageView, ImageView filteredImageViewRight) {
         super(context);
         mCamera = camera;
         mFilteredImageView = filteredImageView;
+        mFilteredImageViewRight = filteredImageViewRight;
         // Install a SurfaceHolder.Callback so we get notified when the
         // underlying surface is created and destroyed.
         mHolder = getHolder();
@@ -38,11 +41,12 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         // The Surface has been created, now tell the camera where to draw the preview.
 
         try {
+          //  holder.setFormat(PixelFormat.TRANSPARENT);
             mCamera.setPreviewDisplay(holder);
             //TODO @see associated with previewCallback
             mCamera.setPreviewCallback(this);
             mCamera.startPreview();
-        } catch (IOException e) {
+        } catch (Exception e) {
             Log.d(TAG, "Error setting camera preview: " + e.getMessage());
         }
     }
@@ -93,7 +97,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         int size = data.length;
         Camera.Size previewSize = camera.getParameters().getPreviewSize();
 
-        ColorblindnessTestFilter colorblindnessTestFilter = new ColorblindnessTestFilter(getContext(),mFilteredImageView, camera);
+        ColorblindnessTestFilter colorblindnessTestFilter = new ColorblindnessTestFilter(getContext(),mFilteredImageView,mFilteredImageViewRight, camera);
         colorblindnessTestFilter.execute(data);
         /*YuvImage yuvimage=new YuvImage(data, ImageFormat.NV21, previewSize.width, previewSize.height, null);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

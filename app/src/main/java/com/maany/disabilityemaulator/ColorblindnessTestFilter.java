@@ -22,13 +22,15 @@ import java.io.ByteArrayOutputStream;
  */
 public class ColorblindnessTestFilter extends AsyncTask<byte[], Integer, byte[]> {
     private ImageView imageView;
+    private ImageView imageViewRight;
     private Camera camera;
     private Context context;
 
-    public ColorblindnessTestFilter(Context context, ImageView imageView, Camera camera) {
+    public ColorblindnessTestFilter(Context context, ImageView imageView, ImageView imageViewRight, Camera camera) {
         this.context = context;
         this.imageView = imageView;
         this.camera = camera;
+        this.imageViewRight = imageViewRight;
     }
 
     @Override
@@ -86,16 +88,21 @@ public class ColorblindnessTestFilter extends AsyncTask<byte[], Integer, byte[]>
         Bitmap bmSrc = BitmapFactory.decodeByteArray(data, 0, data.length);
         Bitmap bm = bmSrc.copy(Bitmap.Config.ARGB_8888,true);
         // Process pixels
-        int pixel,R,G,B,A;
+        int pixel,R,G,B,A,r,g,b,a;
         for(int i=0;i<bm.getWidth();i++)
             for(int j=0;j<bm.getHeight();j++){
                 pixel = bm.getPixel(i, j);
                 R = Color.red(pixel);
                 G = Color.green(pixel);
                 B = Color.blue(pixel);
-
+                A = Color.alpha(pixel);
                 try {
-                    bm.setPixel(i, j, R);
+                    r = (int)(0.5667*R + 0.43333*G);
+                    g = (int)(0.55833*R + 0.44167*G);
+                    b =(int)(0.24167*G+0.75833*B);
+                    a = A;
+                    int color = Color.argb(100, r, g, 0);
+                    bm.setPixel(i, j, color);
                 } catch(Exception ex){
                     ex.printStackTrace();
                 }
@@ -106,6 +113,7 @@ public class ColorblindnessTestFilter extends AsyncTask<byte[], Integer, byte[]>
         //  imageView.setMinimumHeight(dm.heightPixels);
         //  imageView.setMinimumWidth(dm.widthPixels);
         imageView.setImageBitmap(bm);
+        imageViewRight.setImageBitmap(bm);
 
     }
 
