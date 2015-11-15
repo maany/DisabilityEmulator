@@ -15,17 +15,25 @@
         <activity
             android:name=".CameraActivity"
             android:label="@string/app_name"
-            android:screenOrientation="landscape" android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:noHistory="true"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".DeuteranopiaActivity"
             android:label="@string/title_activity_deuteranopia"
-            android:screenOrientation="landscape" android:noHistory="true">
+            android:noHistory="true"
+            android:screenOrientation="landscape" >
 
+        </activity>
+        <activity
+            android:name=".TritanopiaActivity"
+            android:label="@string/title_activity_tritanopia"
+            android:noHistory="true"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
