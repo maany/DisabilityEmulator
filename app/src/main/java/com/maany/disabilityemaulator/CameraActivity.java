@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +31,8 @@ public class CameraActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
 
-        debugText = (TextView)findViewById(R.id.debugText);
+//        debugText = (TextView)findViewById(R.id.debugText);
+        debugText = new TextView(this);
         filteredImageView = (ImageView) findViewById(R.id.camera_preview_filtered);
         filteredImageViewRight = (ImageView) findViewById(R.id.camera_preview_filtered_right);
 
@@ -48,8 +51,11 @@ public class CameraActivity extends Activity {
             debugText.setText("Cool cool");
             // Create our Preview view and set it as the content of our activity.
             mPreview = new CameraPreview(this, mCamera, filteredImageView, filteredImageViewRight);
-            FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+            RelativeLayout preview = (RelativeLayout) findViewById(R.id.camera_preview);
             preview.addView(mPreview);
+
+            preview.setVisibility(View.INVISIBLE);
+            filteredImageView.setVisibility(View.INVISIBLE);
         }else{
             // camera not available
             debugText.setText("no Cool");

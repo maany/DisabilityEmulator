@@ -22,48 +22,52 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
-            <FrameLayout
-                android:id="@+id/camera_preview"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:alpha="0" />
-
-            <ImageView
-                android:id="@+id/solid_white"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:alpha="1"
-                android:src="@drawable/white" />
-
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
+
+                <RelativeLayout
+                    android:id="@+id/camera_preview"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:alpha="1" />
+
+                <RelativeLayout
+                    android:id="@+id/camera_preview_dummy"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:alpha="1"
+                    />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+
+                >
 
                 <ImageView
                     android:id="@+id/camera_preview_filtered"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:alpha="1" />
+                    android:alpha="1"
+                    />
 
                 <ImageView
                     android:id="@+id/camera_preview_filtered_right"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:alpha="1" />
+                    android:alpha="1"
+                    />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/debugText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:text="Small Text"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+
         </FrameLayout>
     </LinearLayout>
 
