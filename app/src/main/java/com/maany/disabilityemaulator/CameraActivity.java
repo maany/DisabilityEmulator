@@ -69,7 +69,9 @@ public class CameraActivity extends Activity {
 
                 Intent intent = new Intent(CameraActivity.this,DeuteranopiaActivity.class);
                 try {
+                    killActivity();
                     startActivity(intent);
+
                 }catch(Exception ex){
                     ex.printStackTrace();
                 }
@@ -122,5 +124,8 @@ public class CameraActivity extends Activity {
             // no camera on this device
             return false;
         }
+    }
+    private void killActivity(){
+        finish();
     }
 }

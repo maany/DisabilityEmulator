@@ -17,23 +17,30 @@
             android:label="@string/app_name"
             android:noHistory="true"
             android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
         <activity
             android:name=".DeuteranopiaActivity"
             android:label="@string/title_activity_deuteranopia"
             android:noHistory="true"
             android:screenOrientation="landscape" >
-
         </activity>
         <activity
             android:name=".TritanopiaActivity"
             android:label="@string/title_activity_tritanopia"
             android:noHistory="true"
             android:screenOrientation="landscape" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+        <activity
+            android:name=".peripheral.PeripheralVision"
+            android:label="@string/title_activity_peripheral_vision"
+            android:noHistory="true"
+            android:screenOrientation="landscape">
+
         </activity>
     </application>
 

@@ -6,4 +6,5 @@
     <color name="white">#FFFFFF</color>
     <string name="title_activity_deuteranopia">DeuteranopiaActivity</string>
     <string name="title_activity_tritanopia">TritanopiaActivity</string>
+    <string name="title_activity_peripheral_vision">PeripheralVision</string>
 </resources>
