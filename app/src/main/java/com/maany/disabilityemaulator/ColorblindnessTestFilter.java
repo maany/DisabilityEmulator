@@ -86,6 +86,7 @@ public class ColorblindnessTestFilter extends AsyncTask<byte[], Integer, byte[]>
     @Override
     protected void onPostExecute(byte[] data) {
         Bitmap bmSrc = BitmapFactory.decodeByteArray(data, 0, data.length);
+       /*
         Bitmap bm = bmSrc.copy(Bitmap.Config.ARGB_8888,true);
         Bitmap bm2 = bmSrc.copy(Bitmap.Config.ARGB_8888,true);
         // Process pixels
@@ -107,14 +108,16 @@ public class ColorblindnessTestFilter extends AsyncTask<byte[], Integer, byte[]>
                 } catch(Exception ex){
                     ex.printStackTrace();
                 }
-            }
+            }*/
+
+
 //        DisplayMetrics dm = new DisplayMetrics();
 //        getWindowManager().getDefaultDisplay().getMetrics(dm);
 
         //  imageView.setMinimumHeight(dm.heightPixels);
         //  imageView.setMinimumWidth(dm.widthPixels);
-        imageView.setImageBitmap(bm2);
-        imageViewRight.setImageBitmap(bm2);
+        imageView.setImageBitmap(bmSrc);
+        imageViewRight.setImageBitmap(bmSrc);
 
     }
 

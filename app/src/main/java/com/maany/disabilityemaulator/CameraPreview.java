@@ -97,6 +97,8 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
         ColorblindnessTestFilter colorblindnessTestFilter = new ColorblindnessTestFilter(getContext(),mFilteredImageView,mFilteredImageViewRight, camera);
         colorblindnessTestFilter.execute(data);
+
+
         /*YuvImage yuvimage=new YuvImage(data, ImageFormat.NV21, previewSize.width, previewSize.height, null);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         //yuvimage.compressToJpeg(new Rect(0, 0, previewSize.width, previewSize.height), 80, baos);
