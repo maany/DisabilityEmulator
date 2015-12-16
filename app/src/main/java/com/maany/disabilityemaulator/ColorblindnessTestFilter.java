@@ -21,6 +21,7 @@ import java.io.ByteArrayOutputStream;
  * Created by Mayank on 11/14/2015.
  */
 public class ColorblindnessTestFilter extends AsyncTask<byte[], Integer, byte[]> {
+    private static boolean toggle = false;
     private ImageView imageView;
     private ImageView imageViewRight;
     private Camera camera;
@@ -91,14 +92,20 @@ public class ColorblindnessTestFilter extends AsyncTask<byte[], Integer, byte[]>
         Bitmap bm2 = bmSrc.copy(Bitmap.Config.ARGB_8888,true);
         // Process pixels
         int pixel,r,g,b,a;
+        if(toggle==false){
+            toggle = true;
+            return;
+        }
+        toggle=false;
         for(int i=0;i<bm.getWidth();i++)
             for(int j=0;j<bm.getHeight();j++){
                 pixel = bm.getPixel(i, j);
+
                 try {
-                    r = (int)(0.5667*Color.red(pixel) + 0.43333*Color.green(pixel));
+/*                    r = (int)(0.5667*Color.red(pixel) + 0.43333*Color.green(pixel));
                     g = (int)(0.55833*Color.red(pixel) + 0.44167*Color.green(pixel));
-                    b =(int)(0.24167*Color.green(pixel)+0.75833*Color.blue(pixel));
-                    bm2.setPixel(i, j, Color.argb(100,r,g,b));
+                    b =(int)(0.24167*Color.green(pixel)+0.75833*Color.blue(pixel));*/
+                    bm2.setPixel(i, j, Color.argb(100,(int)(0.5667*Color.red(pixel) + 0.43333*Color.green(pixel)),(int)(0.55833*Color.red(pixel) + 0.44167*Color.green(pixel)),(int)(0.24167*Color.green(pixel)+0.75833*Color.blue(pixel))));
                 } catch(Exception ex){
                     ex.printStackTrace();
                 }
