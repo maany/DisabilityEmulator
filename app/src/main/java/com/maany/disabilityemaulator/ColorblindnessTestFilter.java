@@ -86,29 +86,23 @@ public class ColorblindnessTestFilter extends AsyncTask<byte[], Integer, byte[]>
     @Override
     protected void onPostExecute(byte[] data) {
         Bitmap bmSrc = BitmapFactory.decodeByteArray(data, 0, data.length);
-       /*
+
         Bitmap bm = bmSrc.copy(Bitmap.Config.ARGB_8888,true);
         Bitmap bm2 = bmSrc.copy(Bitmap.Config.ARGB_8888,true);
         // Process pixels
-        int pixel,R,G,B,A,r,g,b,a;
+        int pixel,r,g,b,a;
         for(int i=0;i<bm.getWidth();i++)
             for(int j=0;j<bm.getHeight();j++){
                 pixel = bm.getPixel(i, j);
-                R = Color.red(pixel);
-                G = Color.green(pixel);
-                B = Color.blue(pixel);
-                A = Color.alpha(pixel);
                 try {
-                    r = (int)(0.5667*R + 0.43333*G);
-                    g = (int)(0.55833*R + 0.44167*G);
-                    b =(int)(0.24167*G+0.75833*B);
-                    a = A;
-                    int color = Color.argb(100, r, g, b);
-                    bm2.setPixel(i, j, color);
+                    r = (int)(0.5667*Color.red(pixel) + 0.43333*Color.green(pixel));
+                    g = (int)(0.55833*Color.red(pixel) + 0.44167*Color.green(pixel));
+                    b =(int)(0.24167*Color.green(pixel)+0.75833*Color.blue(pixel));
+                    bm2.setPixel(i, j, Color.argb(100,r,g,b));
                 } catch(Exception ex){
                     ex.printStackTrace();
                 }
-            }*/
+            }
 
 
 //        DisplayMetrics dm = new DisplayMetrics();
@@ -116,8 +110,8 @@ public class ColorblindnessTestFilter extends AsyncTask<byte[], Integer, byte[]>
 
         //  imageView.setMinimumHeight(dm.heightPixels);
         //  imageView.setMinimumWidth(dm.widthPixels);
-        imageView.setImageBitmap(bmSrc);
-        imageViewRight.setImageBitmap(bmSrc);
+        imageView.setImageBitmap(bm2);
+        imageViewRight.setImageBitmap(bm2);
 
     }
 
