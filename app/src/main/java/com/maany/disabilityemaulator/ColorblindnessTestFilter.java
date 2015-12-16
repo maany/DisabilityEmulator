@@ -38,40 +38,6 @@ public class ColorblindnessTestFilter extends AsyncTask<byte[], Integer, byte[]>
     protected byte[] doInBackground(byte[]... params) {
         byte[] data = params[0];
         Camera.Size previewSize = camera.getParameters().getPreviewSize();
- /*       Bitmap bm = BitmapFactory.decodeByteArray(data, 0, data.length);
-          ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
-        return byteArray;*/
-
-/*
-        int picw = previewSize.width;
-        int pich = previewSize.height;
-        int[] pix = new int[picw * pich];
-        bm.getPixels(pix, 0, picw, 0, 0, picw, pich);
-
-        int R, G, B,Y;
-
-        for (int y = 0; y < pich; y++){
-            for (int x = 0; x < picw; x++)
-            {
-                int index = y * picw + x;
-                R = (pix[index] >> 16) & 0xff;
-                G = (pix[index] >> 8) & 0xff;
-                B = pix[index] & 0xff;
-                Log.i("x:" + x + "y:" + y,"R :"+ R );
-                //R,G.B - Red, Green, Blue
-                //to restore the values after RGB modification, use
-                //next statement
-                pix[index] = 0xff000000 | (R << 16) | (G << 8) | B;
-            }}
-*/
-
-        //Bitmap
-
-        //RGB mods
-
-        //Reconstruct to byte array
 
         //apply yuv image to that bytearray
         YuvImage yuvimage = new YuvImage(data, ImageFormat.NV21, previewSize.width, previewSize.height, null);

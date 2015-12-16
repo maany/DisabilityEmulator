@@ -19,6 +19,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class CameraActivity extends Activity {
 
     public static final String TAG = CameraActivity.class.getName();
@@ -39,7 +41,7 @@ public class CameraActivity extends Activity {
         filteredImageViewRight = (ImageView) findViewById(R.id.camera_preview_filtered_right);
         deuteranopia = (Button) findViewById(R.id.deuteranopia);
         if(checkCameraHardware(this)){
-            Toast.makeText(this,"Device has usable camera", Toast.LENGTH_LONG);
+            Toast.makeText(this, "Device has usable camera", Toast.LENGTH_LONG);
             Log.i(TAG, "Device has usable camera");
             debugText.setText("Cool");
         } else {
@@ -62,6 +64,7 @@ public class CameraActivity extends Activity {
             // camera not available
             debugText.setText("no Cool");
         }
+
 
         deuteranopia.setOnClickListener(new View.OnClickListener() {
             @Override
