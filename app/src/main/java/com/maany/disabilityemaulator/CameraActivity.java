@@ -126,6 +126,19 @@ public class CameraActivity extends Activity {
         }
     }
     private void killActivity(){
+        releaseCamera();
         finish();
+
+    }
+
+    private void releaseCamera(){
+
+        if(mCamera!=null){
+            mCamera.stopPreview();
+            mCamera.setPreviewCallback(null);
+            mCamera.release();
+            mCamera = null;
+        }
+
     }
 }
