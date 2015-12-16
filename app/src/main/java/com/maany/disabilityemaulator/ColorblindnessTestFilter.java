@@ -91,7 +91,7 @@ public class ColorblindnessTestFilter extends AsyncTask<byte[], Integer, byte[]>
         Bitmap bm = bmSrc.copy(Bitmap.Config.ARGB_8888,true);
         Bitmap bm2 = bmSrc.copy(Bitmap.Config.ARGB_8888,true);
         // Process pixels
-        int pixel,r,g,b,a;
+        int pixel,r,g;
         if(toggle==false){
             toggle = true;
             return;
@@ -102,10 +102,9 @@ public class ColorblindnessTestFilter extends AsyncTask<byte[], Integer, byte[]>
                 pixel = bm.getPixel(i, j);
 
                 try {
-/*                    r = (int)(0.5667*Color.red(pixel) + 0.43333*Color.green(pixel));
+                    r = (int)(0.5667*Color.red(pixel) + 0.43333*Color.green(pixel));
                     g = (int)(0.55833*Color.red(pixel) + 0.44167*Color.green(pixel));
-                    b =(int)(0.24167*Color.green(pixel)+0.75833*Color.blue(pixel));*/
-                    bm2.setPixel(i, j, Color.argb(100,(int)(0.5667*Color.red(pixel) + 0.43333*Color.green(pixel)),(int)(0.55833*Color.red(pixel) + 0.44167*Color.green(pixel)),(int)(0.24167*Color.green(pixel)+0.75833*Color.blue(pixel))));
+                    bm2.setPixel(i, j, Color.argb(100,(int)(0.5667*r + 0.43333*g),(int)(0.55833*r + 0.44167*g),(int)(0.24167*g+0.75833*Color.blue(pixel))));
                 } catch(Exception ex){
                     ex.printStackTrace();
                 }
